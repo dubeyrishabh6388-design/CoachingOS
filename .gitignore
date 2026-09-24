@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js & TypeScript Build Outputs
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+# Environment variables & secrets (do not commit sensitive passwords)
+.env
+.env*.local
+*.env
+
+# Debug & Error logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
