@@ -1,115 +1,71 @@
-# CoachingOS — Multi-Tenant Coaching Institute OS
+# CoachingOS — Enterprise Multi-Institute Operating System
 
-CoachingOS is structured as a monorepo containing two separate, independent services inside one parent directory:
+CoachingOS is a comprehensive, production-ready operating system built for coaching institutes, tuition centers, and multi-branch academies.
+
+---
+
+## Architecture Overview
+
+CoachingOS is structured as a modular monorepo containing two dedicated services:
 
 ```
 coachingos/
-├── package.json          # Root orchestration scripts
+├── package.json          # Monorepo orchestration scripts
 ├── README.md             # Project documentation
-├── scripts/              # QA test & route verification scripts
-│   ├── audit-routes.mjs
-│   └── test-user-workflows.mjs
+├── docs/                 # System architecture, database schemas, API specs
+├── scripts/              # Verification, testing & automated audit tools
 │
-├── frontend/             # Next.js 15 App (UI, pages, components)
-│   ├── .env              # Frontend environment variables
-│   ├── .env.example
-│   ├── package.json      # Frontend dependencies & scripts
+├── frontend/             # Next.js 15 App (Turbopack, Tailwind CSS, Lucide icons)
+│   ├── package.json      # Frontend scripts & dependencies
 │   ├── tsconfig.json
-│   ├── next.config.ts    # Configured with API rewrites to backend
-│   ├── tailwind.config.ts
+│   ├── next.config.ts    # API proxy and performance optimization
 │   └── src/
-│       ├── app/          # Dashboard, CRM, Academics, Finance, Settings
-│       ├── components/   # AppShell, Navbar, Sidebar, CommandPalette
-│       └── lib/          # AppContext, types, client utilities
+│       ├── app/          # Dynamic Dashboards, Admissions CRM, Academics, Finance
+│       ├── components/   # Isolated UI components, Modals, Role-based Navbars
+│       └── lib/          # AppContext state engine, DB store, utility helpers
 │
-└── backend/              # Express REST API Server (Business logic, DB store)
-    ├── .env              # Backend environment variables
-    ├── .env.example
-    ├── package.json      # Backend dependencies & scripts
+└── backend/              # Node / Express REST API Server
+    ├── package.json      # Backend scripts & dependencies
     ├── tsconfig.json
     └── src/
-        ├── index.ts      # Express server entry point (Port 4000)
-        ├── routes/       # Leads, Invoices, Admissions, Payments, Attendance, etc.
-        ├── db/           # In-memory DB store & initial seed data
-        └── lib/          # Email notifications (nodemailer), types
+        ├── index.ts      # Server entry point
+        ├── routes/       # Auth, Leads, Admissions, Invoices, Attendance, Tests
+        └── db/           # Relational schemas, seed store & business controllers
 ```
 
 ---
 
-## Environment Variables (`.env`)
+## Core Capabilities
 
-Each service has its own dedicated `.env` file:
-
-### Frontend Environment (`frontend/.env`)
-```env
-PORT=3000
-NODE_ENV=development
-
-# Application & Backend URLs
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-NEXT_PUBLIC_BACKEND_URL=http://localhost:4000
-
-# Default Institute & Branch Context
-NEXT_PUBLIC_DEFAULT_ORG_ID=org-kota-001
-NEXT_PUBLIC_DEFAULT_BRANCH_ID=br-kota-main
-```
-
-### Backend Environment (`backend/.env`)
-```env
-PORT=4000
-NODE_ENV=development
-CORS_ORIGIN=http://localhost:3000
-
-# Multi-Tenant Cloud Default Identifiers
-DEFAULT_ORG_ID=org-kota-001
-DEFAULT_BRANCH_ID=br-kota-main
-
-# Payment Gateway (Direct Merchant Settlement)
-RAZORPAY_KEY_ID=rzp_test_placeholder
-RAZORPAY_KEY_SECRET=rzp_secret_placeholder
-
-# AI Provider Configuration
-LLM_PROVIDER=gemini
-GEMINI_API_KEY=placeholder_api_key
-
-# Absence Notification via Gmail SMTP (Free)
-NOTIFY_FROM_EMAIL=yourname@gmail.com
-NOTIFY_FROM_APP_PASS=xxxx xxxx xxxx xxxx
-NOTIFY_TO_EMAIL=6388248689@test.com
-```
+- **Role-Based Isolation**: Tailored workstations for Owners/Directors, Teachers, Students, and Parents.
+- **Biometric & Attendance Log**: Daily check-in tracking and automated absentee alerts.
+- **Smart Admissions & Leads CRM**: Lead capture, follow-ups, and 1-tap admission credential generation.
+- **Finance & Fee Ledger**: GST invoices, fee collection, PDC cheque vault, and direct payment tracking.
+- **Academics & Tests**: Batch timetables, homework & DPP distribution, test analysis, and rank diagnostics.
 
 ---
 
 ## Getting Started
 
-### 1. Run Both Services Concurrently
-From the root directory:
+### 1. Run Concurrently
 ```bash
 npm run dev
 ```
-This runs:
-- **Frontend** at [http://localhost:3000](http://localhost:3000)
-- **Backend** at [http://localhost:4000](http://localhost:4000)
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Backend**: [http://localhost:4000](http://localhost:4000)
 
-### 2. Run Services Individually
-```bash
-# Frontend only
-npm run dev:frontend
-
-# Backend only
-npm run dev:backend
-```
-
-### 3. Build Both Services
+### 2. Build for Production
 ```bash
 npm run build
+npm start
 ```
 
-### 4. Verification & Testing
+### 3. Verification & Testing
 ```bash
-# Verify all 17 routes
 npm run audit
-
-# Run 10/10 automated E2E workflows
 npm run test
 ```
+
+---
+
+*Confidential & Proprietary. All rights reserved.*
