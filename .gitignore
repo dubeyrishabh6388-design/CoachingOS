@@ -10,9 +10,8 @@ build/
 dist/
 *.tsbuildinfo
 
-# Environment variables & secrets (do not commit sensitive passwords)
-.env
-.env*.local
+# Environment variables & secrets (do not commit sensitive passwords or env files)
+.env*
 *.env
 
 # Debug & Error logs
